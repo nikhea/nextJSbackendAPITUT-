@@ -2,6 +2,7 @@
   "name": "expense-tracker-nextjs",
   "version": "0.1.0",
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "start": "concurrently \"next start\" \"ts-node scripts/index.ts\"",
     "dev": "concurrently \"next dev\" \"nodemon --watch scripts --ext ts --exec ts-node ./scripts/index.ts\"",
@@ -9,9 +10,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "amqplib": "^0.10.4",
+    "axios": "^1.7.7",
     "concurrently": "^9.0.1",
     "csv-parse": "^5.5.6",
     "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.5",
     "formidable": "^3.5.1",
     "mongoose": "^8.6.2",
     "multer": "^1.4.5-lts.1",
@@ -22,6 +26,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.10.5",
     "@types/formidable": "^3.4.5",
     "@types/multer": "^1.4.12",
     "@types/node": "^20",

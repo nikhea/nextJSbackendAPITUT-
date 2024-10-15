@@ -1,13 +1,19 @@
+require("dotenv").config();
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { connectDB } from "@/lib/db";
 import User from "@/model/user.model";
 import { handleError } from "@/lib/httpResponseHandler";
+import { publishToQueue } from "@/lib/rabbitMq";
+
+const RABBITMQ_QUEUE = process.env.RABBITMQ_QUEUE!;
 
 export async function GET(req: NextRequest, res: NextResponse) {
   try {
     await connectDB();
     const users = await User.find({ is_deleted: false }).lean();
+    await publishToQueue(RABBITMQ_QUEUE, users);
+
     return NextResponse.json(
       {
         message: "users fetch successfully",
