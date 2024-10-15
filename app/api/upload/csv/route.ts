@@ -4,11 +4,11 @@ import { Readable } from "stream";
 import { handleError } from "@/lib/httpResponseHandler";
 import { uploadFilesCSVMiddleware } from "@/lib/uploadFile";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };
 
 async function runMiddleware(
   req: NextRequest,

@@ -38,16 +38,6 @@ async function runMiddleware(
   });
 }
 
-// async function parseExcel(buffer: ArrayBuffer): Promise<any[]> {
-//   const workbook = XLSX.read(buffer, { type: "array" });
-//   const sheetName = workbook.SheetNames[0];
-//   const sheet = workbook.Sheets[sheetName];
-//   const data = XLSX.utils.sheet_to_json(sheet);
-//   const filteredData = filterEmptyRows(data);
-
-//   return filteredData;
-// }
-
 async function parseExcel(buffer: ArrayBuffer): Promise<any[]> {
   const workbook = XLSX.read(buffer, { type: "array" });
   const sheetName = workbook.SheetNames[0]; // Read the first sheet
@@ -67,9 +57,9 @@ export async function POST(
     const formData = await req.formData();
     const file: any = formData.get("file");
 
-    if (!file.name) {
+    if (!file) {
       return NextResponse.json(
-        { message: "Missing required fields", success: false, statusCode: 400 },
+        { message: "No files received.", success: false, statusCode: 400 },
         { status: 400 }
       );
     }
@@ -115,3 +105,13 @@ export async function POST(
     return handleError(error);
   }
 }
+
+// async function parseExcel(buffer: ArrayBuffer): Promise<any[]> {
+//   const workbook = XLSX.read(buffer, { type: "array" });
+//   const sheetName = workbook.SheetNames[0];
+//   const sheet = workbook.Sheets[sheetName];
+//   const data = XLSX.utils.sheet_to_json(sheet);
+//   const filteredData = filterEmptyRows(data);
+
+//   return filteredData;
+// }
