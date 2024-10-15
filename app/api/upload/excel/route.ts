@@ -4,11 +4,11 @@ import { handleError } from "@/lib/httpResponseHandler";
 import { uploadFilesCSVMiddleware } from "@/lib/uploadFile";
 import { Readable } from "stream";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };
 
 function filterEmptyRows(data: any[]): any[] {
   return data
