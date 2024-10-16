@@ -1,4 +1,21 @@
-// import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
+import { handleError } from "@/lib/httpResponseHandler";
+
+export async function GET(req: NextRequest, res: NextResponse) {
+  try {
+    return NextResponse.json(
+      {
+        message: "users fetch successfully",
+        success: true,
+        statusCode: 200,
+        data: "users",
+      },
+      { status: 200 }
+    );
+  } catch (error: any) {
+    return handleError(error, "Failed to fetch users");
+  }
+}
 // import swaggerJsdoc from "swagger-jsdoc";
 
 // const options: swaggerJsdoc.Options = {
